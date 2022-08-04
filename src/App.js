@@ -15,6 +15,31 @@ function App() {
       <div className="black-nav">
         <h4>ReactPractice</h4>
       </div>
+      <button
+        onClick={() => {
+          let copy = [...items];
+          copy[0] = "여자코트 추천";
+          itemFunction(copy);
+        }}
+      >
+        Edit
+      </button>
+      <button
+        onClick={() => {
+          const descending = [...items].sort((a, b) => {
+            const upperCaseA = a.toUpperCase();
+            const upperCaseB = b.toUpperCase();
+
+            if (upperCaseA < upperCaseB) return 1;
+            if (upperCaseA > upperCaseB) return -1;
+            if (upperCaseA === upperCaseB) return 0;
+          });
+          console.log(descending);
+          itemFunction(descending);
+        }}
+      >
+        정렬버튼
+      </button>
 
       {items.map((item) => (
         <div className="list">
