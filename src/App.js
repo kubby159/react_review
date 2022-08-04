@@ -9,41 +9,17 @@ function App() {
     "파이썬맛집",
   ]);
   let [like, changeLike] = useState(0);
+  const [toggle, toggleChange] = useState(false);
 
   return (
     <div className="App">
       <div className="black-nav">
         <h4>ReactPractice</h4>
       </div>
-      <button
-        onClick={() => {
-          let copy = [...items];
-          copy[0] = "여자코트 추천";
-          itemFunction(copy);
-        }}
-      >
-        Edit
-      </button>
-      <button
-        onClick={() => {
-          const descending = [...items].sort((a, b) => {
-            const upperCaseA = a.toUpperCase();
-            const upperCaseB = b.toUpperCase();
-
-            if (upperCaseA < upperCaseB) return 1;
-            if (upperCaseA > upperCaseB) return -1;
-            if (upperCaseA === upperCaseB) return 0;
-          });
-          console.log(descending);
-          itemFunction(descending);
-        }}
-      >
-        정렬버튼
-      </button>
 
       {items.map((item) => (
         <div className="list">
-          <h4>
+          <h4 onClick={() => toggleChange(!toggle)}>
             {item}
             <span
               onClick={() => {
@@ -57,6 +33,17 @@ function App() {
           <p>2월 17일 발행</p>
         </div>
       ))}
+      {toggle ? <Modal></Modal> : null}
+    </div>
+  );
+}
+
+function Modal() {
+  return (
+    <div className="model">
+      <h4>제목</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
     </div>
   );
 }
